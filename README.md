@@ -7,22 +7,24 @@ C++ ML Sandbox is a hands-on C++ playground built to strip away the "black box."
 
 ----------
 
-****main workflow of the app****:
+# ****main workflow of the app****:
 The user provides a sample CSV file to which they can apply various basic ML algorithms interactively for educational purposes.
 
 
     todo:
-    -fix ostream operators -replace get()
+    -fix ostream operators -replace get() - DONE
+    -sample data generation
+    -testing.
     -[] operator overload for both vector and matrix;
     -continue parsecsv: it essentially takes a csv file as an input (using ifstream) and composes one vector and matrix
-    objects with parsed data from said csv file;
-    -generate sample data function for easier debugging
+    objects with parsed data from said csv file; - DK IF COMPOSE OR INHERITANCE
+    -csv to txt? / actually parsing the csv for normalized data
     - [...]
 
     -start implementing model class which will later be used for the ML algorithms
 
 -----------
-****Cerințe****
+## Cerințe
 
     definirea a minim 3-4 clase folosind compunere cu clasele definite de voi; moștenirile nu se iau în considerare aici - PARTIAL WIP TEMA 2
 

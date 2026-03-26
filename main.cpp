@@ -11,13 +11,14 @@
     in an interactive manner;
 
     todo:
-    -fix ostream operators -replace get()
+    -fix ostream operators -replace get() - DONE
+    -sample data generation
+    -testing.
     -[] operator overload for both vector and matrix;
     -continue parsecsv: it essentially takes a csv file as an input (using ifstream) and composes one vector and matrix
-    objects with parsed data from said csv file;
-    -generate sample data function for easier debugging
+    objects with parsed data from said csv file; - DK IF COMPOSE OR INHERITANCE
+    -csv to txt? / actually parsing the csv for normalized data
     - [...]
-
     -start implementing model class which will later be used for the ML algorithms
 
  *
@@ -57,8 +58,6 @@ int main() {
     Vector v1(v, size);
     v1.setInterval(v, 2, 4);
     v1.get();
-
-
 
     return 0;
 }
