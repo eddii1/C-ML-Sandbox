@@ -11,7 +11,7 @@ Vector::Vector(int &size_) {
     this->size = size_;
 }
 
-Vector::Vector(int *v_, int size_) {
+Vector::Vector(float *v_, int size_) {
     this->size = size_;
     this->v = new float[size_];
 
@@ -44,7 +44,7 @@ void Vector::get() const {
     std::cout << v[size-1] << ")" << '\n';
 }
 
-void Vector::set(int &size_, float *v_){
+inline void Vector::set(int &size_, float *v_){
     this->size = size_;
     for (int i = 0; i < size_; i++)
         this->v[i] = v_[i];
@@ -58,11 +58,13 @@ void Vector::setInterval(float *v_, int start= 0, int final= 9){
             this->v[i] = v_[i];
 }
 
-std::ostream& operator<<(std::ostream &os, const Vector &v_) {
+std::ostream& operator<<(std::ostream &os, const Vector v_) {
     os << "Vector is : (";
-    for (int i = 0; i < 9; i++)
-        //os << v_[i] << ",";
-    //os << ")";
+    for (int i = 0; i < v_.size; i++)
+        os << v_.v[i] << ",";
+
+    os << ")";
     return os;
 }
+
 

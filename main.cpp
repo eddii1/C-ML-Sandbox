@@ -28,8 +28,8 @@
 
 
 
-int* generateV(int size) {
-    int *v = new int[size];
+float* generateV(int size) {
+    float *v = new float[size];
 
     for (int i = 0; i < size; i++)
         v[i] = i & 1;
@@ -37,25 +37,28 @@ int* generateV(int size) {
     return v;
 }
 
-void outputV(int size, int* v) {
+void outputV(int size, float* v) {
     for (int i = 0; i < size; i++)
         std::cout << v[i] << ' ';
     std::cout << '\n';
 }
 
 int getSize(int *v) {
-
+    return false;
 }
 
 int main() {
-    int size = 10; //std::cin >> size;
-    int *v = generateV(size);
+    float size = 10; //std::cin >> size;
+    float *v = generateV(size);
     //Vector v3(v, size);
     //v3.get();
-    std::cout << sizeof(v) << '\n';
+    outputV(size, v);
 
-    int size_= getSize(v);
-    std::cout << "Size is: " << size_ << '\n';
+    Vector v1(v, size);
+    v1.setInterval(v, 2, 4);
+    v1.get();
+
+
 
     return 0;
 }

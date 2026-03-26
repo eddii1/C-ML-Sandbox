@@ -11,7 +11,7 @@ protected:
 public:
     Vector();
     Vector(int& size);
-    Vector(int* v, int size);
+    Vector(float* v, int size);
     Vector(Vector &other);
     ~Vector();
 
@@ -19,10 +19,13 @@ public:
     void set(int& size_, float *v_);
     void setInterval(float *v_, int start, int final);
 
-    friend std::ostream operator<<(std::ostream &os, const Vector v_);
+    friend std::ostream& operator<<(std::ostream &os, const Vector v_);
 
     //getter & setter function.
 };
+
+
+
 
 
 #endif //PROIECT_OOP_VECTOR_H
