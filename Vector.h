@@ -15,7 +15,7 @@ public:
     Vector(Vector &other);
     ~Vector();
 
-    bool check();
+    bool check() const;
     void clear();
     void get () const;
     void set(int size_, float *v_);

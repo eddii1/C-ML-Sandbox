@@ -4,9 +4,12 @@
 
 //matrice patratica? nu neap
 class Matrix {
+public:
     struct pair {
         int n, m;
     };
+
+private:
     pair size;
     float **m;
 
@@ -17,7 +20,7 @@ public:
     ~Matrix();
 
 
-    bool check();
+    bool check() const;
     void clear();
     void get() const;
     void set(float **m, pair&size);

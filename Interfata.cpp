@@ -1,55 +1,66 @@
 //
 // Created by Tudoran Eduard on 27.03.2026.
 //
-#include <stdio.h>
 #include <iostream>
-#include <string.h>
 #include "Interfata.h"
 
 void Interfata::decision() {
-    int choice = 0;
-    std::cout << "----------------------\n";
-    std::cout << "1. AFISARE SAMPLE\n";
-    std::cout << "2. INIT SAMPLE\n";
-    std::cout << "3.---------------------\n";
+    bool running = true;
 
-    std::cin >> choice;
+    while (running) {
+        int choice = 0;
 
-    switch (choice) {
-        case 1:
-            std::cout<<"da1 \n";
-            bool sem = s.v.check();
-            if (sem)
-                V.get();
-            else
-                std::cout << "SAMPLE NEINITIALIZAT\n";
+        std::cout << "----------------------\n";
+        std::cout << "1. AFISARE SAMPLE\n";
+        std::cout << "2. INIT SAMPLE MANUAL\n";
+        std::cout << "3. CLEAR SAMPLE\n";
+        std::cout << "0. EXIT\n";
+        std::cout << "----------------------\n";
+        std::cin >> choice;
 
-        case 2:
-            std::cout << "da2\n";
-            sem = V.check();
-            if (sem) {
-                char rein[2];
-                std::cout << "SAMPLE DEJA INITIALIZAT\n";
-                std::cout << "DORESTI REINITIALIZARE?(y/n)\n";
-                std::cin >> rein;
-                if (strcmp(rein, "y") == 1) {
-                    V.set(0, nullptr);
+        switch (choice) {
+            case 1:
+                s.get();
+                break;
+
+            case 2: {
+                if (s.check()) {
+                    char rein = 'n';
+                    std::cout << "SAMPLE DEJA INITIALIZAT\n";
+                    std::cout << "DORESTI REINITIALIZARE? (y/n)\n";
+                    std::cin >> rein;
+
+                    if (rein != 'y' && rein != 'Y') {
+                        break;
+                    }
                 }
-            } else {
-                std::cout << "WHATS YOUR INPUT FILENAME?\n";
-                char filename[204];
-                std::cin >> filename;
-                Sample.parseCSV(filename);
 
-
+                s.manuallyInit();
+                break;
             }
 
-    }
+            case 3:
+                clear();
+                break;
 
+            case 0:
+                running = false;
+                break;
+
+            default:
+                std::cout << "OPTIUNE INVALIDA\n";
+                break;
+        }
+    }
 }
 
 
 void Interfata::clear() {
-    int choice = 0;
+    if (!s.check()) {
+        std::cout << "SAMPLE NEINITIALIZAT\n";
+        return;
+    }
 
+    s.clear();
+    std::cout << "SAMPLE STERS\n";
 }

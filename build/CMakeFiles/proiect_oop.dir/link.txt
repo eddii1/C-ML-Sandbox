@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/proiect_oop.dir/main.cpp.o CMakeFiles/proiect_oop.dir/Vector.cpp.o CMakeFiles/proiect_oop.dir/Matrix.cpp.o CMakeFiles/proiect_oop.dir/ParseCSV.cpp.o CMakeFiles/proiect_oop.dir/Interfata.cpp.o CMakeFiles/proiect_oop.dir/Sample.cpp.o -o proiect_oop

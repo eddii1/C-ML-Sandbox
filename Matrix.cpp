@@ -9,6 +9,12 @@
 Matrix::Matrix() : size({0,0}), m(nullptr) {}
 
 Matrix::Matrix(pair& size_) {
+    if (size_.n <= 0 || size_.m <= 0) {
+        this->size = {0, 0};
+        this->m = nullptr;
+        return;
+    }
+
     this->size = size_;
 
     this->m = new float*[size_.n];
@@ -31,16 +37,15 @@ Matrix::Matrix(Matrix &other) {
 }
 
 Matrix::~Matrix() {
-    int len = this->size.n;
-    this->size = {0,0};
-
-    for (int i = 0; i < len; i++) {
-        delete[] this->m[i];
-    }
-    delete[] this->m;
+    clear();
 }
 
 void Matrix::get() const {
+    if (!check()) {
+        std::cout << "MATRICE NEINITIALIZATA\n";
+        return;
+    }
+
     std::cout << "Size: " << size.n << "x" << size.m << "\n";
     for (int i = 0; i < size.n; i++) {
         for (int j = 0; j < size.m; j++) {
@@ -51,11 +56,19 @@ void Matrix::get() const {
 }
 
 void Matrix::set(float **m_, pair& size_) {
+    if (check()) {
+        clear();
+    }
+
+    if (m_ == nullptr || size_.n <= 0 || size_.m <= 0) {
+        return;
+    }
+
     this->size = size_;
 
     this->m = new float*[size_.n];
     for (int i = 0; i < size_.n; i++) {
-        this->m[i] = new float[size_.n];
+        this->m[i] = new float[size_.m];
         for (int j = 0; j < size_.m; j++) {
             this->m[i][j] = m_[i][j];
         }
@@ -64,14 +77,15 @@ void Matrix::set(float **m_, pair& size_) {
 
 void Matrix::clear() {
     int len = this->size.n;
-    this->size = {0,0};
 
     for (int i = 0; i < len; i++) {
         delete[] this->m[i];
     }
     delete[] this->m;
+    this->m = nullptr;
+    this->size = {0,0};
 }
 
-bool Matrix::check() {
-    return (this->size.n != 0 && this->size.m !=0 ? true : false);
+bool Matrix::check() const {
+    return this->size.n > 0 && this->size.m > 0 && this->m != nullptr;
 }

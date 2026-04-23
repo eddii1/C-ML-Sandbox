@@ -17,9 +17,10 @@ protected:
 
 public:
     void clear();
-    bool check();
+    bool check() const;
+    void get() const;
 
-    void manuallyInit(Matrix& m_, Vector& v_);
+    void manuallyInit();
 
 
 };
