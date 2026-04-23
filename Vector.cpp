@@ -28,26 +28,27 @@ Vector::Vector(Vector &other) {
         this->v = nullptr;
 }
 
-Vector::~Vector() {
-    std::cout << "Size before destructing: " << size << '\n';
-    std::cout << "--------------- deconstr --------------- \n";
-    this->size = 0;
-    delete[] v;
-}
-
 void Vector::get() const {
     std::cout << "Size is: " << this->size << '\n';
 
     std::cout << "Vector is: (";
     for (int i = 0; i < size - 1; i++)
+
         std::cout << this->v[i] << " , ";
     std::cout << v[size-1] << ")" << '\n';
+    std::cout << '\n';
 }
 
-inline void Vector::set(int &size_, float *v_){
+inline void Vector::set(int size_, float *v_){
     this->size = size_;
     for (int i = 0; i < size_; i++)
         this->v[i] = v_[i];
+}
+
+void Vector::clear() {
+    delete[] v;
+    this->v = nullptr;
+    this->size = 0;
 }
 
 void Vector::setInterval(float *v_, int start= 0, int final= 9){
@@ -58,13 +59,24 @@ void Vector::setInterval(float *v_, int start= 0, int final= 9){
             this->v[i] = v_[i];
 }
 
-std::ostream& operator<<(std::ostream &os, const Vector v_) {
+bool Vector::check() {
+    return this->size != 0;
+}
+
+std::ostream& operator<<(std::ostream &os, const Vector &v_) {
     os << "Vector is : (";
     for (int i = 0; i < v_.size; i++)
         os << v_.v[i] << ",";
 
     os << ")";
+    os << '\n';
     return os;
+}
+Vector::~Vector() {
+    this->size = 0;
+    std::cout << "--------------- deconstr --------------- \n";
+    std::cout << "Size before destructing: " << size << '\n';
+    delete[] v;
 }
 
 

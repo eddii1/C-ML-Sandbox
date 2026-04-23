@@ -9,4 +9,8 @@ add_executable(proiect_oop main.cpp
         Matrix.cpp
         Matrix.h
         ParseCSV.cpp
-        ParseCSV.h)
+        ParseCSV.h
+        Interfata.cpp
+        Interfata.h
+        Sample.cpp
+        Sample.h)

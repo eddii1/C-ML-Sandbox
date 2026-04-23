@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Vector.h"
 #include "Matrix.h"
+#include "Interfata.h"
 
 
 /*****
@@ -24,12 +25,12 @@
  *
  *
  *
- */////
+ *****/
 
 
 
 
-float* generateV(int size) {
+float* generateV1(int size) {
     float *v = new float[size];
 
     for (int i = 0; i < size; i++)
@@ -38,7 +39,16 @@ float* generateV(int size) {
     return v;
 }
 
-void outputV(int size, float* v) {
+float* generateV2(int size) {
+    float *v = new float[size];
+
+    for (int i = 0; i < size; i++)
+        v[i] = i % 7;
+
+    return v;
+}
+
+void outputV(float* v, int size) {
     for (int i = 0; i < size; i++)
         std::cout << v[i] << ' ';
     std::cout << '\n';
@@ -50,14 +60,23 @@ int getSize(int *v) {
 
 int main() {
     float size = 10; //std::cin >> size;
-    float *v = generateV(size);
-    //Vector v3(v, size);
-    //v3.get();
-    outputV(size, v);
+    float *v1_neobiect = generateV1(size);
+    float *v2_neobiect = generateV2(size);
+    outputV(v1_neobiect, size);
+    outputV(v2_neobiect, size);
 
-    Vector v1(v, size);
-    v1.setInterval(v, 2, 4);
-    v1.get();
+
+    Vector v_obiect(v1_neobiect, size);
+    // std::cout << v_obiect;
+
+    v_obiect.setInterval(v2_neobiect, 3, 6);
+    // std::cout << v_obiect;
+
+    //v_obiect.setInterval();
+
+    Interfata I;
+    I.decision();
+
 
     return 0;
 }

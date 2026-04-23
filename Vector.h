@@ -15,11 +15,13 @@ public:
     Vector(Vector &other);
     ~Vector();
 
+    bool check();
+    void clear();
     void get () const;
-    void set(int& size_, float *v_);
+    void set(int size_, float *v_);
     void setInterval(float *v_, int start, int final);
 
-    friend std::ostream& operator<<(std::ostream &os, const Vector v_);
+    friend std::ostream& operator<<(std::ostream &os, const Vector &v_);
 
     //getter & setter function.
 };

@@ -6,62 +6,72 @@
 //     v = nullptr;
 // }
 
-Matrix::Matrix() : n(0), m(0), v(nullptr) {}
+Matrix::Matrix() : size({0,0}), m(nullptr) {}
 
-Matrix::Matrix(float **v_, int n_, int m_) {
-    this->n = n_;
-    this->m = m_;
+Matrix::Matrix(pair& size_) {
+    this->size = size_;
 
-    this->v = new float*[n_];
-    for (int i = 0; i < n_; i++) {
-        this->v[i] = new float[m_];
+    this->m = new float*[size_.n];
+    for (int i = 0; i < size_.n; i++) {
+        this->m[i] = new float[size_.m];
     }
 }
 
 Matrix::Matrix(Matrix &other) {
-    this->n = other.n;
-    this->m = other.m;
+    this->size = other.size;
 
-    this->v = new float*[this->n];
+    this->m = new float*[other.size.n];
 
-    for (int i = 0; i < this->n; i++) {
-        this->v[i] = new float[this->m];
+    for (int i = 0; i < this->size.n; i++) {
+        this->m[i] = new float[this->size.m];
 
-        for (int j = 0; j < this->m; j++)
-            this->v[i][j] = other.v[i][j];
+        for (int j = 0; j < this->size.m; j++)
+            this->m[i][j] = other.m[i][j];
     }
 }
 
 Matrix::~Matrix() {
-    int len = this->n;
-    this->n = 0;
-    this->m = 0;
+    int len = this->size.n;
+    this->size = {0,0};
 
     for (int i = 0; i < len; i++) {
-        delete[] this->v[i];
+        delete[] this->m[i];
     }
-    delete[] this->v;
+    delete[] this->m;
 }
 
 void Matrix::get() const {
-    std::cout << "Size: " << n << "x" << m << "\n";
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            std::cout << v[i][j] << " ";
+    std::cout << "Size: " << size.n << "x" << size.m << "\n";
+    for (int i = 0; i < size.n; i++) {
+        for (int j = 0; j < size.m; j++) {
+            std::cout << m[i][j] << " ";
         }
         std::cout << "\n";
     }
 }
-void Matrix::set(int n_, int m_, float **v_) {
-    this->n = n_;
-    this->m = m_;
 
-    this->v = new float*[n];
-    for (int i = 0; i < n; i++) {
-        this->v[i] = new float[m];
-        for (int j = 0; j < m; j++) {
-            this->v[i][j] = v_[i][j];
+void Matrix::set(float **m_, pair& size_) {
+    this->size = size_;
+
+    this->m = new float*[size_.n];
+    for (int i = 0; i < size_.n; i++) {
+        this->m[i] = new float[size_.n];
+        for (int j = 0; j < size_.m; j++) {
+            this->m[i][j] = m_[i][j];
         }
     }
 }
 
+void Matrix::clear() {
+    int len = this->size.n;
+    this->size = {0,0};
+
+    for (int i = 0; i < len; i++) {
+        delete[] this->m[i];
+    }
+    delete[] this->m;
+}
+
+bool Matrix::check() {
+    return (this->size.n != 0 && this->size.m !=0 ? true : false);
+}

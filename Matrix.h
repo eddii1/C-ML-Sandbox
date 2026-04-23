@@ -4,19 +4,23 @@
 
 //matrice patratica? nu neap
 class Matrix {
-    long long int n;
-    long long int m;
-    float **v;
+    struct pair {
+        int n, m;
+    };
+    pair size;
+    float **m;
 
 public:
     Matrix();
-    Matrix(float** v, int n, int m);
+    Matrix(pair& size);
     Matrix(Matrix& other);
     ~Matrix();
 
 
+    bool check();
+    void clear();
     void get() const;
-    void set(int n_, int m_, float **v_);
+    void set(float **m, pair&size);
 
     friend std::ostream& operator<<(std::ostream &os, const Matrix &m_);
 };
