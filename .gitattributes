@@ -1,0 +1,6 @@
+* text=auto
+
+*.cpp linguist-language=C++
+*.h   linguist-language=C++
+
+cmake-build-*/** linguist-generated=true

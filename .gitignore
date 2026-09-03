@@ -1,0 +1,12 @@
+# Build output
+build/
+cmake-build-*/
+compile_commands.json
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store

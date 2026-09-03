@@ -1,0 +1,13 @@
+# Example keyboard input for the interactive menu.
+# Menu option 2 ("Enter a sample by hand"), for a 3 x 2 sample:
+
+2
+3
+2
+1 2
+3 4
+5 6
+10
+20
+30
+0
